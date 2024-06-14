@@ -3,6 +3,7 @@ const ctx = canvas.getContext('2d');
 
 const grid = 20;
 let count = 0;
+let isPaused = false;
 
 let snake = {
     x: 160,
@@ -22,7 +23,23 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function resetApple() {
+    apple.x = getRandomInt(0, 25) * grid;
+    apple.y = getRandomInt(0, 25) * grid;
+    // Ensure the apple doesn't appear on the snake
+    snake.cells.forEach(function (cell) {
+        if (cell.x === apple.x && cell.y === apple.y) {
+            resetApple();
+        }
+    });
+}
+
 function loop() {
+    if (isPaused) {
+        requestAnimationFrame(loop);
+        return;
+    }
+
     requestAnimationFrame(loop);
 
     if (++count < 4) {
@@ -62,8 +79,7 @@ function loop() {
 
         if (cell.x === apple.x && cell.y === apple.y) {
             snake.maxCells++;
-            apple.x = getRandomInt(0, 25) * grid;
-            apple.y = getRandomInt(0, 25) * grid;
+            resetApple();
         }
 
         for (let i = index + 1; i < snake.cells.length; i++) {
@@ -74,8 +90,7 @@ function loop() {
                 snake.maxCells = 4;
                 snake.dx = grid;
                 snake.dy = 0;
-                apple.x = getRandomInt(0, 25) * grid;
-                apple.y = getRandomInt(0, 25) * grid;
+                resetApple();
             }
         }
     });
@@ -94,7 +109,10 @@ document.addEventListener('keydown', function (e) {
     } else if (e.which === 40 && snake.dy === 0) {
         snake.dy = grid;
         snake.dx = 0;
+    } else if (e.which === 80) {
+        isPaused = !isPaused;
     }
 });
 
+resetApple();
 requestAnimationFrame(loop);
