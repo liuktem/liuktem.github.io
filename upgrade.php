@@ -13,3 +13,4 @@ if (file_exists($dataFile)) {
     echo json_encode($data);
 }
 ?>
+
