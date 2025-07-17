@@ -1,16 +1,182 @@
+<?php
+// translyaciya.php
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Interactive Starry Night</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн трансляція</title>
+    <meta name="description" content="Усик Дюбуа – онлайн трансляція бою реваншу">
+    <style>
+        body {
+            background-color: #111;
+            color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #f2c94c;
+        }
+
+        .video-placeholder {
+            margin: 30px 0;
+            background-color: #000;
+            border: 2px solid #333;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: #ccc;
+        }
+
+        .countdown {
+            font-size: 1.2em;
+            margin-top: 15px;
+            color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Interactive Starry Night</h1>
-        <p>Click anywhere on the sky to add a star</p>
-        <div id="sky"></div>
+        <h1>Онлайн трансляція</h1>
+        <p>Усик Дюбуа – онлайн трансляція бою реваншу</p>
+
+        <div class="video-placeholder">
+            Трансляція почнеться 19.07.2025 о 21:00
+        </div>
+
+        <div class="countdown">
+            До початку трансляції залишилось: <span id="timer">...</span>
+        </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        const countdown = document.getElementById("timer");
+        const startTime = new Date("2025-07-19T21:00:00+03:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = startTime - now;
+
+            if (distance <= 0) {
+                countdown.innerHTML = "Трансляція вже розпочалась!";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdown.innerHTML = `${days}д ${hours}г ${minutes}хв ${seconds}с`;
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
+<?php
+// translyaciya.php
+?>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Онлайн трансляція</title>
+    <meta name="description" content="Усик Дюбуа – онлайн трансляція бою реваншу">
+    <style>
+        body {
+            background-color: #111;
+            color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #f2c94c;
+        }
+
+        .video-placeholder {
+            margin: 30px 0;
+            background-color: #000;
+            border: 2px solid #333;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: #ccc;
+        }
+
+        .countdown {
+            font-size: 1.2em;
+            margin-top: 15px;
+            color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Онлайн трансляція</h1>
+        <p>Усик Дюбуа – онлайн трансляція бою реваншу</p>
+
+        <div class="video-placeholder">
+            Трансляція почнеться 19.07.2025 о 21:00
+        </div>
+
+        <div class="countdown">
+            До початку трансляції залишилось: <span id="timer">...</span>
+        </div>
+    </div>
+
+    <script>
+        const countdown = document.getElementById("timer");
+        const startTime = new Date("2025-07-19T21:00:00+03:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = startTime - now;
+
+            if (distance <= 0) {
+                countdown.innerHTML = "Трансляція вже розпочалась!";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdown.innerHTML = `${days}д ${hours}г ${minutes}хв ${seconds}с`;
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
 </body>
 </html>
